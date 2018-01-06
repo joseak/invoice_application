@@ -1,40 +1,49 @@
-// const mysql = require('mysql');
+const mysql = require('mysql');
+const getProductList = require('./getProductList');
 
-// const connection = mysql.createConnection({
-//   host     : 'localhost',
-//   user     : 'invoice',
-//   password : 'weavedIn',
-//   database : 'weaved_in'
-// });
+const connection = getProductList.getConnection();
 
-// const insertIntoDB = (dbValues) => {
-// 	// let data = {'inv_cd': 2, 'name': "Bottle", 'quantity': 10, 'price': 2500};
-// 	let query = connection.query('INSERT INTO test SET ?', dbValues, function (error, results, fields) {
-// 		if (error) throw error;
-// 	});
-// 	console.log(query.sql);
-// };
+const saveToDB = (dbValues) => {
 
-// const createEntryJson = (jsonData) => {
-// 	let data = {};
-// 	if (jsonData.itemName) {
-// 		data['name'] = jsonData.itemName;
-// 	}
-// 	if (jsonData.quantity) {
-// 		data['quantity'] = jsonData.quantity;
-// 	}
-// 	if (jsonData.price) {
-// 		data['price'] = jsonData.price;
-// 	}
-// 	if (jsonData.inv_cd) {
-// 		data['inv_cd'] = jsonData.inv_cd;
-// 	}
-// 	insertIntoDB(data);
-// };
+	return new Promise((resolve, reject) => {
+		let query = connection.query('INSERT INTO test (inv_cd, name, quantity, price) VALUES ?', dbValues, 
+		  function (error, results, fields) {
+			
+			if (error) throw error;
+			resolve(results);
+		});
+	});
+};
+
+const createEntryJson = (jsonData) => {
+	let bulkInsertArray = [];
+	jsonData.inventory.forEach((item) => {
+		let data = [];
+		if (item.inv_cd) {
+			data[0] = jsonData.inv_cd;
+		}
+		if (item.itemName) {
+			data[1] = item.itemName;
+		}
+		if (item.quantity) {
+			data[2] = item.quantity;
+		}
+		if (item.price) {
+			data[3] = item.price;
+		}
+		bulkInsertArray.push(data);
+	});
+	return saveToDB(bulkInsertArray);
+};
  
-// connection.connect();
- 
-// let data = {'inv_cd': 2, 'itemName': "Phone", 'quantity': 1, 'price': 10000};
-// createEntryJson(data);
- 
-// connection.end();
+const insertIntoDB = (jsonData) => {
+	return createEntryJson(jsonData)
+		.then((results) => {
+			console.log('Insertion successful');
+			console.log(results);
+			return results;
+		});
+};
+
+module.exports.insertIntoDB = insertIntoDB;
+
