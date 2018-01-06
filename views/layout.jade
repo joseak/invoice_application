@@ -1,0 +1,23 @@
+doctype
+html
+	head(style={margin: '0px', width: '100%'})
+		title Dashboard
+		link(rel='stylesheet', href='/stylesheets/style.css')
+	body
+		script(type="text/javascript", src="/javascripts/invoice.js")
+		.dashboard
+			p Dashboard
+		.invoice
+			#left.invoice_list
+				.search
+					input(type: 'text', placeholder: 'Search', style={width: '100%', background: '#353E47'})
+				each row in rows
+					.invoice_list_detail(onClick="clickable('#{row.name}')")
+						.inv_name #{row.name}
+						.date #{row.date}
+						.item_count #{row.items}
+						.user #{row.author}
+						.price #{row.price}
+					.line
+			#right.right_pane
+				block right_pane

@@ -1,0 +1,134 @@
+body {
+	font: 14px "Lucida Grande", Helvetica, Arial;
+	margin: 0px;
+	width: 100%;
+}
+a {
+	color: #00b7ff;
+}
+.dashboard {
+	height: 50px;
+	background: #2F6495;
+	color: #FFFFFF;
+}
+p {
+	margin-left: 20px
+}
+.invoice_list {
+	height: calc(100% - 50px);
+	overflow: auto;
+	position: fixed;
+	float:left;
+	width:22%;
+	background: #2F373F;
+	color: #606B76	
+}
+.search {
+	width: 100%;
+}
+.invoice_list_detail {
+	background: #3F4B56;
+	color: #606B76;
+	height: 100px	
+}
+.inv_name {
+	margin-left: 20px;
+	float:left;
+	vertical-align: middle;
+	width: 60%;
+	height: 33%;
+	color: #A2AEBF
+}
+.date {
+	float:right;
+	width: 30%;
+	height: 33%;
+	color: #A2AEBF
+}
+.item_count {
+	margin-left: 20px;
+	float:left;
+	height: 33%;
+	width: 60%
+}
+.user {
+	margin-left: 20px;
+	float:left;
+	height: 33%;
+	width: 60%;
+	color: #62A9F8
+}
+.price {
+	float:right;
+	height: 33%;
+	width: 30%;
+	color: #A2AEBF
+}
+.line {
+	float: left;
+	background: #3D454F;
+	width: 100%;
+	height: 2px
+}
+.right_pane {
+	float: right;
+	width:78%;
+	height: calc(100% - 50px);
+	background: #F2F3F5;
+	color: #B4BBC4
+}
+.invoice_detail {
+	margin-left: 20px;
+	margin-right: 20px;
+	background: #ffffff;
+	overflow: hidden
+}
+.inv_heading {
+	width: 100%;
+	margin-left: 20px;
+	margin-right: 50px;
+	overflow: hidden
+}
+.inv_heading > div {
+	float: left;
+	width: 40%
+}
+.blank {
+	width: 100%;
+	height: 20px;
+	text-align: right
+}
+.invoice_items {
+	margin-left: 20px;
+	margin-right: 50px;
+	overflow: hidden
+}
+.item {
+	width: 60%;
+	text-align: left
+}
+.qty {
+	width: 20%;
+	text-align: center
+}
+.price_item {
+	width: 20%;
+	text-align: right
+}
+.invoice_total {
+	float: right;
+	width: 30%;
+	margin-right: 50px;
+	overflow: hidden
+}
+.left_total {
+	float: left;
+	width: 50%
+}
+.right_total{
+	float: right;
+	width: 50%;
+	text-align: right
+}
+
+

@@ -1,0 +1,39 @@
+extends layout
+block right_pane
+	p INVOICE DETAILS
+	.invoice_detail
+		.inv_heading
+			div
+				div(style={color: "#000000"}) INVOICE
+				div(style={color: "#000000"}) #{element.name}
+				div #{element.date}
+			div
+				div(style={color: "#000000"}) CUSTOMER DETAILS
+				div(style={color: "#000000"}) #{element.author}
+				div #{element.email}
+			div(style={float: 'right', width: '15%'}) PRINT
+		.blank
+		.invoice_items
+			table(style={float: 'left', width: '100%'})
+				thead
+					tr
+						th.item ITEM
+						th.qty QUANTITY 
+						th.price_item PRICE
+				tbody
+					each item in items
+						tr
+							td.item(style={color: '#000000'}) #{item.name}
+							td.qty(style={color: '#000000'}) #{item.quantity}
+							td.price_item(style={color: '#000000'}) #{item.price}
+		.blank
+		.invoice_total
+			.left_total Sub Total
+			.right_total #{total.subTotal}
+			.left_total Tax
+			.right_total #{total.tax}
+			.left_total Discount
+			.right_total #{total.discount}
+			.blank(style={'float': 'left'})
+			.left_total(style={color: '#000000'}) Grand Total
+			.right_total(style={color: '#000000'}) #{total.grandTotal}
