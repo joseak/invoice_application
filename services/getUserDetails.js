@@ -25,17 +25,21 @@ const processDate = (dbDate) => {
 
 const formatAsResponse = (results) => {
 	let jsonData = {};
-	jsonData['inv_cd'] = results[0].inv_cd;
-	jsonData['name'] = results[0].inv_cd;
-	jsonData['author'] = results[0].user;
-	jsonData['email'] = results[0].email;
-	jsonData['address'] = results[0].address;
-	jsonData['pin_code'] = results[0].pin_code;
-	jsonData['phone'] = results[0].phone;
-	jsonData['tax_percent'] = results[0].tax_percent;
-	jsonData['discount_percent'] = results[0].discount_percent;
-	jsonData['date'] = processDate(results[0].created_date);
-	return jsonData;
+	if (results.length > 0) {
+		jsonData['inv_cd'] = results[0].inv_cd;
+		jsonData['name'] = results[0].inv_cd;
+		jsonData['author'] = results[0].user;
+		jsonData['email'] = results[0].email;
+		jsonData['address'] = results[0].address;
+		jsonData['pin_code'] = results[0].pin_code;
+		jsonData['phone'] = results[0].phone;
+		jsonData['tax_percent'] = results[0].tax_percent;
+		jsonData['discount_percent'] = results[0].discount_percent;
+		jsonData['date'] = processDate(results[0].created_date);
+		return jsonData;
+	} else {
+		return Promise.reject("No elements");
+	}
 };
  
 const queryResults = (inv_cd) => {

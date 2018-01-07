@@ -36,7 +36,9 @@ router.get('/', (req, res) => {
 		}).then(getProductList.queryDb)
 		.then((result) => {
 			res.render('right_pane_extension', {rows: rows, items: result.items, total: result.total, element: result.element});
-		});
+		}).catch((error) => {
+			res.render('right_pane_extension', {rows: [], items: [], total: {}, element: {}});
+		})
 });
 
 module.exports = router;

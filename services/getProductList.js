@@ -8,7 +8,7 @@ const connection = mysql.createConnection({
 });
 
 const queryDb = (inv_cd, callback) => {
-	let sqlQuery = 'SELECT * FROM test where inv_cd = ?';
+	let sqlQuery = 'SELECT * FROM inventory where inv_cd = ?';
 	let insertParams = [inv_cd];
 	sql = mysql.format(sqlQuery, insertParams);
 

@@ -6,7 +6,7 @@ const connection = getProductList.getConnection();
 const saveToDB = (dbValues) => {
 
 	return new Promise((resolve, reject) => {
-		let query = connection.query('INSERT INTO test (inv_cd, name, quantity, price) VALUES ?', [dbValues], 
+		let query = connection.query('INSERT INTO inventory (inv_cd, name, quantity, price) VALUES ?', [dbValues], 
 		  function (error, results, fields) {
 			
 			if (error) {
