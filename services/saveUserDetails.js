@@ -14,14 +14,15 @@ const saveToDB = (dbValues) => {
 };
 
 const createUserJson = (jsonData) => {
-	return saveToDB(jsonData);
+	let dbJson = JSON.parse(JSON.stringify(jsonData));
+	delete dbJson['inventory'];
+	return saveToDB(dbJson);
 };
  
 const insertIntoDB = (jsonData) => {
 	return createUserJson(jsonData)
-		.then((results) => {
+		.then((inv_cd) => {
 			console.log('Insertion successful');
-			console.log(inv_cd);
 			jsonData['inv_cd'] = inv_cd
 			return Promise.resolve(jsonData);
 		});

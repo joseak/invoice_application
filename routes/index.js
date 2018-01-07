@@ -14,22 +14,22 @@ router.get('/detail', function(req, res) {
 		});
 });
 
-router.get('/', (req, res) => {
-	let rows;
-	getInvoiceList.queryDb()
+router.post('/create_invoice', (req, res) => {
+	saveUserDetails.insertIntoDB(req.body)
+		.then(saveInventory.insertIntoDB)
+		.then(getInvoiceList.queryDb)
 		.then((invoice) => {
 			rows = invoice;
 			return getUserDetails.queryDb(invoice[0].inv_cd);
 		}).then(getProductList.queryDb)
 		.then((result) => {
-			res.render('right_pane_extension', {rows: rows, items: result.items, total: result.total, element: result.element});
+			res.render('right_pane', {rows: rows, items: result.items, total: result.total, element: result.element});
 		});
 });
 
-router.post('/invoice', (req, res) => {
-	saveUserDetails.insertIntoDB(jsonData)
-		.then(saveInventory.insertIntoDB)
-		.then(getInvoiceList.queryDb)
+router.get('/', (req, res) => {
+	let rows;
+	getInvoiceList.queryDb()
 		.then((invoice) => {
 			rows = invoice;
 			return getUserDetails.queryDb(invoice[0].inv_cd);
