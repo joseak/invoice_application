@@ -1,3 +1,11 @@
+CREATE DATABASE weaved_in;
+
+CREATE USER 'invoice'@'localhost' IDENTIFIED BY 'weavedIn';
+
+GRANT ALL PRIVILEGES ON weaved_in . * TO 'invoice'@'localhost';
+
+USE weaved_in;
+
 CREATE TABLE user ( 
  inv_cd    int  NOT NULL AUTO_INCREMENT,
  user   VARCHAR(255),
